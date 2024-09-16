@@ -82,7 +82,6 @@ func FileDedupeRangeFull(
 		progress(0, value.Src_length, false)
 	}
 	for {
-		// fmt.Printf("srcFd %d, req: %+v\n", srcFd, *req)
 		if err := unix.IoctlFileDedupeRange(srcFd, req); err != nil {
 			return err
 		}
@@ -111,10 +110,6 @@ func FileDedupeRangeFull(
 		if dedupeBytes > req.Src_length {
 			panic("deduped more bytes than requested")
 		}
-		// fmt.Printf("info is %+v\n", req.Info[0])
-		// if !dedupeBytesValid {
-		// 	panic("dflksjhd")
-		// }
 
 		req.Src_offset += dedupeBytes
 		req.Src_length -= dedupeBytes
@@ -145,7 +140,8 @@ func FileDedupeRangeFull(
 	}
 }
 
-// FileDedupeRangeStatusToString converts a FileDedupeRangeInfo.Status to a human-readable string
+// FileDedupeRangeStatusToString converts a FileDedupeRangeInfo.Status to a
+// human-readable string.
 func FileDedupeRangeStatusToString(status int32) string {
 	if status < 0 {
 		return "errno " + unix.Errno(-status).Error()
