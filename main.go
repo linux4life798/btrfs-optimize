@@ -41,7 +41,7 @@ func fileSize(file *os.File) int64 {
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "dedupe-tool",
+	Use:   "btrfs-optimize",
 	Short: "A tool for file deduplication operations",
 	Long:  `A CLI tool that performs various file deduplication operations including deduplication and checking.`,
 }
